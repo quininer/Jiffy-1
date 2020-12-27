@@ -300,7 +300,7 @@ public:
 
 				Node* n = &(tempTail->currbuffer[index]);
 					n->data = data;
-					n->is_set.store(1, std::memory_order_relaxed);// need this to signal the thread that the data is ready 
+					n->is_set.store(1, std::memory_order_release);// need this to signal the thread that the data is ready 
 					if (index == 1 && !go_back) // allocating a new buffer and adding it to the queue
 					{
 						void* buffer = my_align_malloc(PAGE_SIZE, sizeof(bufferList));
